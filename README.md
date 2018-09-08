@@ -1,2 +1,2 @@
 # written_cplusplus
-c++笔试题
+算法笔试题
