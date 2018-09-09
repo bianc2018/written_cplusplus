@@ -21,12 +21,12 @@
 -41 -5 -10 -31 -44 -16 -3 -33 -34 -35 -44 -44 -25 -48 -16 -32 -37 -8 -33 -30 -6 -18 -26 -37 -40 -30 -50 -32 -5 -41 -32 -12 -33 -22 -14 -34 -1 -41 -45 -8 -39 -27 -23 -45 -10 -50 -34 
 6 3
 """
-
+#输入
 n = int(input())
 stu = list(map(int,input().split()))
 k,d = map(int,input().split())
+#初始化
 from copy import deepcopy
-
 row = [0]*n
 dmax = []
 dmin = []
@@ -36,13 +36,11 @@ for i in range(0,k):
 for nk in range(0,n):
     dmax[0][nk] = stu[nk]
     dmin[0][nk] = stu[nk]
-
+#动态规划，dmax[j][i] 已取j位同学，i是最后一个
 for i in range(0,n):
     for j in range(1,k):
         for kd in range(max(0,i-d),i):
             dmax[j][i] = max(dmax[j][i], dmax[j-1][kd] * stu[i], dmin[j-1][kd] * stu[i])
             dmin[j][i] = min(dmin[j][i], dmax[j-1][kd] * stu[i], dmin[j-1][kd] * stu[i])
-            print(dmax[j])
-            print(dmin[j])
 
 print(max(dmax[k-1]))
